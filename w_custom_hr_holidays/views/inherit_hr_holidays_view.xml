@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+    <odoo>
+        <data>
+            <record id="w_inheirt_hr_leave_report_tree_add_field_expiration" model="ir.ui.view">
+                <field name="name">w.inherit.hr.leave.report.tree.add.field.expiration</field>
+                <field name="model">hr.leave.report</field>
+                <field name="inherit_id" ref="hr_holidays.hr_leave_report_tree"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//field[@name='state']" position="after">
+                        <field name="expiration"/>
+                    </xpath>
+                </field>
+            </record>
+        </data>
+    </odoo>

@@ -1,0 +1,192 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* w_custom_hr_holidays
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-01-25 17:57+0000\n"
+"PO-Revision-Date: 2019-01-25 17:57+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: w_custom_hr_holidays
+#: model_terms:ir.ui.view,arch_db:w_custom_hr_holidays.w_hr_allocation_report_days_view_kanban
+msgid "<span><strong class=\"o_kanban_record_title\">Assigned days:</strong></span>"
+msgstr "Días asignados:"
+
+#. module: w_custom_hr_holidays
+#: model_terms:ir.ui.view,arch_db:w_custom_hr_holidays.w_hr_allocation_report_days_view_kanban
+msgid "<span><strong class=\"o_kanban_record_title\">Expiration: </strong></span>"
+msgstr "Vencimiento:"
+
+#. module: w_custom_hr_holidays
+#: model_terms:ir.ui.view,arch_db:w_custom_hr_holidays.w_hr_allocation_report_days_view_kanban
+msgid "<span><strong class=\"o_kanban_record_title\">Remaining days:</strong></span>"
+msgstr "Días disponibles:"
+
+#. module: w_custom_hr_holidays
+#: model_terms:ir.ui.view,arch_db:w_custom_hr_holidays.w_hr_allocation_report_days_view_kanban
+msgid "<span><strong class=\"o_kanban_record_title\">Used days:</strong></span>"
+msgstr "Días usados:"
+
+#. module: w_custom_hr_holidays
+#: model:ir.model.fields,field_description:w_custom_hr_holidays.field_hr_allocation_available_days__holiday_type
+msgid "Allocation Mode"
+msgstr "Modo de asignación"
+
+#. module: w_custom_hr_holidays
+#: selection:hr.allocation.available.days,type:0
+msgid "Allocation Request"
+msgstr "Solicitud de ausencia"
+
+#. module: w_custom_hr_holidays
+#: selection:hr.allocation.available.days,state:0
+msgid "Approved"
+msgstr "Aprobado"
+
+#. module: w_custom_hr_holidays
+#: model:ir.model.fields,field_description:w_custom_hr_holidays.field_hr_allocation_available_days__number_of_days
+msgid "Assigned days"
+msgstr "Días asignados"
+
+#. module: w_custom_hr_holidays
+#: model:ir.model,name:w_custom_hr_holidays.model_hr_allocation_available_days
+msgid "Available days"
+msgstr "Días disponibles"
+
+#. module: w_custom_hr_holidays
+#: selection:hr.allocation.available.days,holiday_type:0
+msgid "By Employee"
+msgstr "Por empleado"
+
+#. module: w_custom_hr_holidays
+#: selection:hr.allocation.available.days,holiday_type:0
+msgid "By Employee Tag"
+msgstr "Por etiqueta de empleado"
+
+#. module: w_custom_hr_holidays
+#: selection:hr.allocation.available.days,state:0
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: w_custom_hr_holidays
+#: model:ir.model.fields,field_description:w_custom_hr_holidays.field_hr_allocation_available_days__department_id
+msgid "Department"
+msgstr "Departamento"
+
+#. module: w_custom_hr_holidays
+#: model:ir.model.fields,field_description:w_custom_hr_holidays.field_hr_allocation_available_days__name
+msgid "Description"
+msgstr "Descripción"
+
+#. module: w_custom_hr_holidays
+#: model:ir.model.fields,field_description:w_custom_hr_holidays.field_hr_allocation_available_days__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: w_custom_hr_holidays
+#: model:ir.model.fields,field_description:w_custom_hr_holidays.field_hr_allocation_available_days__employee_id
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: w_custom_hr_holidays
+#: model:ir.model.fields,field_description:w_custom_hr_holidays.field_hr_allocation_available_days__category_id
+msgid "Employee Tag"
+msgstr "Etiqueta del empleado"
+
+#. module: w_custom_hr_holidays
+#: model:ir.model.fields,field_description:w_custom_hr_holidays.field_hr_allocation_available_days__expiration
+#: model:ir.model.fields,field_description:w_custom_hr_holidays.field_hr_leave_report__expiration
+msgid "Expiration"
+msgstr "Vencimiento"
+
+#. module: w_custom_hr_holidays
+#: model:ir.model.fields,field_description:w_custom_hr_holidays.field_hr_allocation_available_days__id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: w_custom_hr_holidays
+#: model:ir.model.fields,field_description:w_custom_hr_holidays.field_hr_allocation_available_days____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: w_custom_hr_holidays
+#: selection:hr.allocation.available.days,type:0
+msgid "Leave Request"
+msgstr "Petición de ausencia"
+
+#. module: w_custom_hr_holidays
+#: model:ir.model,name:w_custom_hr_holidays.model_hr_leave_report
+msgid "Leave Summary / Report"
+msgstr "Reporte de ausencias"
+
+#. module: w_custom_hr_holidays
+#: model:ir.model.fields,field_description:w_custom_hr_holidays.field_hr_allocation_available_days__holiday_status_id
+msgid "Leave Type"
+msgstr "Tipo de ausencia"
+
+#. module: w_custom_hr_holidays
+#: model:ir.model,name:w_custom_hr_holidays.model_hr_leave_allocation
+msgid "Leaves Allocation"
+msgstr "Asignación de ausencias"
+
+#. module: w_custom_hr_holidays
+#: selection:hr.allocation.available.days,state:0
+msgid "Refused"
+msgstr "Rechazado"
+
+#. module: w_custom_hr_holidays
+#: model:ir.model.fields,field_description:w_custom_hr_holidays.field_hr_allocation_available_days__remaining_days
+msgid "Remaining days"
+msgstr "Días disponibles"
+
+#. module: w_custom_hr_holidays
+#: model:ir.model.fields,field_description:w_custom_hr_holidays.field_hr_allocation_available_days__type
+msgid "Request Type"
+msgstr "Tipo de petición"
+
+#. module: w_custom_hr_holidays
+#: selection:hr.allocation.available.days,state:0
+msgid "Second Approval"
+msgstr "Segunda aprobación"
+
+#. module: w_custom_hr_holidays
+#: model:ir.model.fields,field_description:w_custom_hr_holidays.field_hr_allocation_available_days__state
+msgid "Status"
+msgstr "Estado"
+
+#. module: w_custom_hr_holidays
+#: model:ir.ui.menu,name:w_custom_hr_holidays.w_menu_open_company_allocation_available_days
+msgid "Summary Allocation"
+msgstr "Saldos"
+
+#. module: w_custom_hr_holidays
+#: model:ir.actions.act_window,name:w_custom_hr_holidays.w_open_company_allocation_available_days
+msgid "Summary allocation"
+msgstr "Saldos"
+
+#. module: w_custom_hr_holidays
+#: selection:hr.allocation.available.days,state:0
+msgid "To Approve"
+msgstr "Para aprobar"
+
+#. module: w_custom_hr_holidays
+#: selection:hr.allocation.available.days,state:0
+msgid "To Submit"
+msgstr "Para envío"
+
+#. module: w_custom_hr_holidays
+#: model:ir.model.fields,field_description:w_custom_hr_holidays.field_hr_allocation_available_days__used_days
+msgid "Used days"
+msgstr "Días usados"
+
+#. module: w_custom_hr_holidays
+#: model:ir.model.fields,field_description:w_custom_hr_holidays.field_hr_leave_allocation__vencimiento
+msgid "Vencimiento"
+msgstr "Vencimiento"
