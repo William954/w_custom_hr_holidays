@@ -19,14 +19,33 @@
 from odoo import api, fields, models, tools
 from dateutil.relativedelta import relativedelta
 
+class leaveasignations(models.Model):
+    _inherit = 'hr.leave.allocation'
+
+
+    vencimiento = fields.Date(
+        store=True,
+        string='Vencimiento',
+        compute='_cumple_laboral_calcution')
+
+
+    @api.one
+    @api.depends('date_in','comple_laboral','antiquity','validity')
+    def _cumple_laboral_calcution(self):
+        if self.date_in:
+            self.comple_laboral = fields.Date.from_string(
+                self.date_in) + relativedelta(years=self.antiquity)
+            self.vencimiento = fields.Date.from_string(
+                self.comple_laboral) + relativedelta(months=self.validity)
+
 
 class LeaveReport(models.Model):
     _inherit = "hr.leave.report"
 
     expiration = fields.Date(string='Expiration', readonly=True)
+
     def init(self):
         tools.drop_view_if_exists(self._cr, 'hr_leave_report')
-        print("entro al supeeeeeeeeeeeeeeeeeeeeeer")
         self._cr.execute("""
             CREATE or REPLACE view hr_leave_report as (
             SELECT row_number() over(ORDER BY leaves.employee_id) as id,
@@ -68,23 +87,3 @@ class LeaveReport(models.Model):
                 from hr_leave as request) leaves
             );
         """)
-
-
-class leaveasignations(models.Model):
-    _inherit = 'hr.leave.allocation'
-
-
-    vencimiento = fields.Date(
-        store=True,
-        string='Vencimiento',
-        compute='_cumple_laboral_calcution')
-
-
-    @api.one
-    @api.depends('date_in','comple_laboral','antiquity','validity')
-    def _cumple_laboral_calcution(self):
-        if self.date_in:
-            self.comple_laboral = fields.Date.from_string(
-                self.date_in) + relativedelta(years=self.antiquity)
-            self.vencimiento = fields.Date.from_string(
-                self.comple_laboral) + relativedelta(months=self.validity)
