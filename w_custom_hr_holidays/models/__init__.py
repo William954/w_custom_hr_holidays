@@ -17,3 +17,4 @@
 #
 ########################################################################
 from . import inherit_hr_leave_allocation
+from . import inherit_hr_leave

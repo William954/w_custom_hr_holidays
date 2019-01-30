@@ -28,58 +28,36 @@ class HrAllocationAvailableDays(models.Model):
     employee_id = fields.Many2one(
         'hr.employee', string="Employee", readonly=True)
     name = fields.Char('Description', readonly=True)
-    number_of_days = fields.Float('Assigned days', readonly=True)
-    used_days = fields.Float('Used days', readonly=True)
-    remaining_days = fields.Float('Remaining days', readonly=True)
-    type = fields.Selection([
-        ('allocation', 'Allocation Request'),
-        ('request', 'Leave Request')
-        ], string='Request Type', readonly=True)
     department_id = fields.Many2one(
         'hr.department', string='Department', readonly=True)
-    category_id = fields.Many2one(
-        'hr.employee.category', string='Employee Tag', readonly=True)
+    number_day_allocation = fields.Float('Assigned days', readonly=True)
+    used_request_day = fields.Float('Used days', readonly=True)
+    remaining_days = fields.Float('Remaining days', readonly=True)
     holiday_status_id = fields.Many2one(
         'hr.leave.type', string='Leave Type', readonly=True)
-    holiday_type = fields.Selection([
-        ('employee', 'By Employee'),
-        ('category', 'By Employee Tag')
-    ], string='Allocation Mode', readonly=True)
-    state = fields.Selection([
-        ('draft', 'To Submit'),
-        ('cancel', 'Cancelled'),
-        ('confirm', 'To Approve'),
-        ('refuse', 'Refused'),
-        ('validate1', 'Second Approval'),
-        ('validate', 'Approved')
-        ], string='Status', readonly=True)
     expiration = fields.Date(string='Expiration', readonly=True)
-
 
     def init(self):
         tools.drop_view_if_exists(self._cr, 'hr_allocation_available_days')
         self._cr.execute("""
             CREATE or REPLACE view hr_allocation_available_days as (
-            SELECT  DISTINCT
-                row_number() over(ORDER BY allocation.employee_id) AS id,
-                allocation.id AS allocation_id,
+            WITH OPER AS (
+            SELECT
+                row_number() over(ORDER BY allocation.id) AS id,
+                allocation.holiday_status_id AS holiday_status_id,
                 allocation.employee_id AS employee_id,
                 allocation.name AS name,
-                allocation.number_of_days AS number_of_days,
-                sum((request.number_of_days) * -1) AS used_days,
-                ((allocation.number_of_days) + SUM(request.number_of_days) * -1) AS remaining_days,
-                allocation.category_id AS category_id,
-                allocation.department_id AS department_id,
-                allocation.holiday_status_id AS holiday_status_id,
-                allocation.state AS state,
                 allocation.vencimiento AS expiration,
-                allocation.holiday_type,
-                'allocation' AS type
+                allocation.department_id AS department_id,
+                allocation.number_of_days AS number_day_allocation,
+                    sum(CASE
+                        WHEN leave.holiday_status_id IS null OR leave.state!='validate' THEN 0
+                        ELSE leave.number_of_days * -1
+                    END) AS used_request_day
             FROM hr_leave_allocation AS allocation
-            JOIN hr_leave AS request
-            ON request.holiday_status_id = allocation.holiday_status_id
-            JOIN hr_employee AS hr
-            ON hr.id = allocation.employee_id AND hr.id =request.employee_id
-            GROUP BY allocation_id, allocation.holiday_status_id
-            );
-        """)
+            LEFT JOIN hr_leave AS leave
+            ON leave.holiday_status_id=allocation.holiday_status_id AND leave.employee_id=allocation.employee_id
+group by allocation.id,allocation.holiday_status_id, allocation.employee_id, allocation.name, allocation.vencimiento, allocation.department_id,allocation.number_of_days)
+            SELECT 
+            id, employee_id, holiday_status_id, name, department_id, number_day_allocation, used_request_day, (number_day_allocation + used_request_day) AS remaining_days, expiration FROM OPER
+            group by id, holiday_status_id, employee_id, department_id, name, number_day_allocation, used_request_day, remaining_days,expiration)""")
